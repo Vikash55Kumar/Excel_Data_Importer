@@ -5,7 +5,7 @@ import bodyParser from "body-parser"
 const app = express()
 
 app.use(cors({
-    origin:process.env.CORES_ORIGIN,
+    origin:[process.env.CORES_ORIGIN || "https://exel-data-importer.netlify.app/"],
     methods: "DELETE, POST, GET, PUT",
     allowedHeaders: [
       "Content-Type",
@@ -28,7 +28,10 @@ const buildPath = path.join(__dirname, '../../frontend/dist');
 
 app.use(express.static(buildPath)); 
 
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next(); // Skip static file serving for API routes
+  }
   res.sendFile(path.join(buildPath, 'index.html'));
 });
 
