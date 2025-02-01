@@ -5,16 +5,19 @@ import bodyParser from "body-parser"
 const app = express()
 
 app.use(cors({
-    origin:[process.env.CORES_ORIGIN || "https://exel-data-importer.netlify.app/"],
-    methods: "DELETE, POST, GET, PUT",
-    allowedHeaders: [
+  origin: [
+      "https://exel-data-importer.netlify.app", 
+      "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: [
       "Content-Type",
       "Authorization",
       "X-Requested-With",
-      "Accept",
-    ],
-    credentials:true
-}))
+      "Accept"
+  ],
+  credentials: true
+}));
 
 app.use(express.json({limit:"15kb"}))
 app.use(express.urlencoded({extended:true, limit:'15kb'}))
