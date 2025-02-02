@@ -56,7 +56,7 @@ export default function Nav() {
       <NavbarContent >
         <NavbarBrand>
           <a href="/">
-          <p className="font-bold text-xl text-inherit md:ml-2">Crypto Currency</p>
+          <p className="font-bold text-xl text-inherit md:ml-2">Excel Importer</p>
           </a>
         </NavbarBrand>
       </NavbarContent>
